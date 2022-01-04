@@ -46,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register Page'),
+        title: const Text('Register Account'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -85,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(40),
                           ),
                         ),
                       ),
