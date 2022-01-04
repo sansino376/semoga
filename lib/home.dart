@@ -45,12 +45,19 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text,
       );
       _snackBar(context, 'Login Berhasil');
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => akademik(),
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
+        _snackBar(context, 'User tidak ditemukan');
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
-        _snackBar(context, 'Login Gagal');
+        _snackBar(context, 'Password salah');
       }
     }
   }
@@ -356,15 +363,19 @@ class _LoginPageState extends State<LoginPage> {
                               Pinned.fromPins(
                                 Pin(start: 0.0, end: 0.0),
                                 Pin(start: 0.0, end: 0.0),
-                                child: PageLink(
-                                  links: [
-                                    PageLinkInfo(
-                                      transition: LinkTransition.Fade,
-                                      ease: Curves.slowMiddle,
-                                      duration: 1.0,
-                                      pageBuilder: () => signIn,
-                                    ),
-                                  ],
+                                // child: PageLink(
+                                //   links: [
+                                //     PageLinkInfo(
+                                //       transition: LinkTransition.Fade,
+                                //       ease: Curves.slowMiddle,
+                                //       duration: 1.0,
+                                //       pageBuilder: () => akademik(),
+                                //     ),
+                                //   ],
+                                child: InkWell(
+                                  onTap: () {
+                                    signIn();
+                                  },
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(19.0),
@@ -377,25 +388,29 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
                                       ],
                                     ),
+                                    child: const Center(
+                                      child: Text(
+                                        'Sign In',
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 13,
+                                          color: Color(0xffffffff),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                              Pinned.fromPins(
-                                Pin(size: 44.0, middle: 0.5),
-                                Pin(size: 19.0, middle: 0.5),
-                                child:
-                                    // Adobe XD layer: 'Label' (text)
-                                    const Text(
-                                  'Sign In',
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 13,
-                                    color: Color(0xffffffff),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
+                              // ),
+                              // Pinned.fromPins(
+                              //   Pin(size: 44.0, middle: 0.5),
+                              //   Pin(size: 19.0, middle: 0.5),
+                              //   child:
+                              //       // Adobe XD layer: 'Label' (text)
+
+                              // ),
                             ],
                           ),
                         ),
