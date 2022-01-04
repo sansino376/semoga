@@ -3019,7 +3019,7 @@ class akademik extends StatelessWidget {
                                           transition: LinkTransition.Fade,
                                           ease: Curves.easeOut,
                                           duration: 0.6,
-                                          pageBuilder: () => home(),
+                                          pageBuilder: () => LoginPage(),
                                         ),
                                       ],
                                       child: Container(

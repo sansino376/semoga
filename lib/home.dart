@@ -1,384 +1,542 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:adobe_xd/blend_mask.dart';
+import 'package:flutter/services.dart';
+import 'package:semoga/register.dart';
 import './akademik.dart';
 import 'package:adobe_xd/page_link.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class home extends StatelessWidget {
-  home({
+class LoginPage extends StatefulWidget {
+  const LoginPage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String? email, password;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _obsecureText = true;
+
+  final _formLoginKey = GlobalKey<FormState>();
+
+  void toggle() {
+    setState(() {
+      _obsecureText = !_obsecureText;
+    });
+  }
+
+  _snackBar(BuildContext context, String title) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(title),
+      duration: const Duration(milliseconds: 1000),
+    ));
+  }
+
+  Future signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      _snackBar(context, 'Login Berhasil');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+        _snackBar(context, 'Login Gagal');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
-      body: Stack(
-        children: <Widget>[
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(start: 0.0, end: 0.0),
-            child:
-                // Adobe XD layer: 'home' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child:
-                      // Adobe XD layer: 'BG' (shape)
-                      Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xffffffff),
-                      border: Border.all(
-                          width: 1.0, color: const Color(0xff707070)),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(start: 17.0, end: 16.0),
-                  Pin(start: 33.7, end: 32.7),
-                  child:
-                      // Adobe XD layer: 'Area ' (shape)
-                      Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(68.0),
-                      color: const Color(0xffedf4f2),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(start: 29.7, end: 28.7),
-                  Pin(size: 247.7, middle: 0.4756),
-                  child: BlendMask(
-                    blendMode: BlendMode.overlay,
-                    child: Stack(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Form(
+              key: _formLoginKey,
+              child: Stack(
+                children: <Widget>[
+                  Pinned.fromPins(
+                    Pin(start: 0.0, end: 0.0),
+                    Pin(start: 0.0, end: 0.0),
+                    child:
+                        // Adobe XD layer: 'home' (group)
+                        Stack(
                       children: <Widget>[
                         Pinned.fromPins(
-                          Pin(size: 98.9, start: 0.0),
-                          Pin(size: 134.9, middle: 0.3299),
-                          child: SvgPicture.string(
-                            _svg_vcywcv,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 41.5, start: 27.8),
-                          Pin(size: 168.9, middle: 0.4721),
-                          child: SvgPicture.string(
-                            _svg_gm5ac5,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 98.9, end: 0.0),
-                          Pin(size: 134.9, middle: 0.3504),
-                          child: SvgPicture.string(
-                            _svg_vcs9nb,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 41.5, end: 29.7),
-                          Pin(start: 39.5, end: 39.3),
-                          child: SvgPicture.string(
-                            _svg_kliu7,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 108.1, middle: 0.5063),
-                          Pin(size: 147.5, start: 0.0),
-                          child: SvgPicture.string(
-                            _svg_mdmd4g,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 45.3, middle: 0.501),
-                          Pin(size: 184.6, start: 0.0),
-                          child: SvgPicture.string(
-                            _svg_ow1o05,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(start: 18.5, end: 42.2),
-                          Pin(size: 64.3, end: 0.0),
-                          child: SvgPicture.string(
-                            _svg_lwl3jj,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(start: 18.5, end: 42.2),
-                          Pin(size: 64.3, end: 0.0),
-                          child: SvgPicture.string(
-                            _svg_u0uydm,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(start: 18.5, end: 42.2),
-                          Pin(size: 44.2, end: 20.1),
-                          child: SvgPicture.string(
-                            _svg_tkhfdz,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 17.6, middle: 0.6336),
-                          Pin(size: 22.7, middle: 0.7463),
-                          child: SvgPicture.string(
-                            _svg_qlah,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 19.6, middle: 0.6972),
-                          Pin(size: 22.9, middle: 0.746),
-                          child: SvgPicture.string(
-                            _svg_id5aro,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 11.2, middle: 0.6412),
-                          Pin(size: 21.5, middle: 0.7476),
-                          child: BlendMask(
-                            blendMode: BlendMode.colorDodge,
-                            child: SvgPicture.string(
-                              _svg_wy2asd,
-                              allowDrawingOutsideViewBox: true,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 22.7, middle: 0.7044),
-                          Pin(size: 29.3, middle: 0.7386),
-                          child: SvgPicture.string(
-                            _svg_guksz4,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 9.3, middle: 0.6616),
-                          Pin(size: 4.7, middle: 0.7796),
-                          child: SvgPicture.string(
-                            _svg_pi60kk,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Pinned.fromPins(
-                          Pin(size: 9.3, middle: 0.6616),
-                          Pin(size: 3.4, middle: 0.7808),
-                          child: SvgPicture.string(
-                            _svg_e4ochh,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(start: 65.8, end: 65.8),
-                  Pin(size: 30.1, middle: 0.4448),
-                  child:
-                      // Adobe XD layer: 'Area ' (shape)
-                      Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(34.0),
-                      color: const Color(0xffffffff),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0x29000000),
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 110.0, middle: 0.7519),
-                  Pin(size: 19.0, middle: 0.6737),
-                  child:
-                      // Adobe XD layer: 'sandi' (text)
-                      Text(
-                    'Lupa kata sandi?',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 13,
-                      color: const Color(0xff3d3d3d),
-                      height: 1.8461538461538463,
-                    ),
-                    textHeightBehavior:
-                        TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 86.0, middle: 0.5017),
-                  Pin(size: 112.0, start: 113.0),
-                  child:
-                      // Adobe XD layer: 'Logo UNAS (Universi…' (shape)
-                      Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: const AssetImage('assets/images/logo1.png'),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 121.0, middle: 0.5),
-                  Pin(size: 38.0, middle: 0.6072),
-                  child:
-                      // Adobe XD layer: 'login' (group)
-                      Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: PageLink(
-                          links: [
-                            PageLinkInfo(
-                              transition: LinkTransition.Fade,
-                              ease: Curves.slowMiddle,
-                              duration: 1.0,
-                              pageBuilder: () => akademik(),
-                            ),
-                          ],
-                          child: Container(
+                          Pin(start: 0.0, end: 0.0),
+                          Pin(start: 0.0, end: 0.0),
+                          child:
+                              // Adobe XD layer: 'BG' (shape)
+                              Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(19.0),
-                              color: const Color(0xff12a346),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0x29000000),
-                                  offset: Offset(0, 5),
-                                  blurRadius: 6,
+                              color: const Color(0xffffffff),
+                              border: Border.all(
+                                  width: 1.0, color: const Color(0xff707070)),
+                            ),
+                          ),
+                        ),
+                        Pinned.fromPins(
+                          Pin(start: 17.0, end: 16.0),
+                          Pin(start: 33.7, end: 32.7),
+                          child:
+                              // Adobe XD layer: 'Area ' (shape)
+                              Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(68.0),
+                              color: const Color(0xffedf4f2),
+                            ),
+                          ),
+                        ),
+                        Pinned.fromPins(
+                          Pin(start: 29.7, end: 28.7),
+                          Pin(size: 247.7, middle: 0.4756),
+                          child: BlendMask(
+                            blendMode: BlendMode.overlay,
+                            child: Stack(
+                              children: <Widget>[
+                                Pinned.fromPins(
+                                  Pin(size: 98.9, start: 0.0),
+                                  Pin(size: 134.9, middle: 0.3299),
+                                  child: SvgPicture.string(
+                                    _svg_vcywcv,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 41.5, start: 27.8),
+                                  Pin(size: 168.9, middle: 0.4721),
+                                  child: SvgPicture.string(
+                                    _svg_gm5ac5,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 98.9, end: 0.0),
+                                  Pin(size: 134.9, middle: 0.3504),
+                                  child: SvgPicture.string(
+                                    _svg_vcs9nb,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 41.5, end: 29.7),
+                                  Pin(start: 39.5, end: 39.3),
+                                  child: SvgPicture.string(
+                                    _svg_kliu7,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 108.1, middle: 0.5063),
+                                  Pin(size: 147.5, start: 0.0),
+                                  child: SvgPicture.string(
+                                    _svg_mdmd4g,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 45.3, middle: 0.501),
+                                  Pin(size: 184.6, start: 0.0),
+                                  child: SvgPicture.string(
+                                    _svg_ow1o05,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(start: 18.5, end: 42.2),
+                                  Pin(size: 64.3, end: 0.0),
+                                  child: SvgPicture.string(
+                                    _svg_lwl3jj,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(start: 18.5, end: 42.2),
+                                  Pin(size: 64.3, end: 0.0),
+                                  child: SvgPicture.string(
+                                    _svg_u0uydm,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(start: 18.5, end: 42.2),
+                                  Pin(size: 44.2, end: 20.1),
+                                  child: SvgPicture.string(
+                                    _svg_tkhfdz,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 17.6, middle: 0.6336),
+                                  Pin(size: 22.7, middle: 0.7463),
+                                  child: SvgPicture.string(
+                                    _svg_qlah,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 19.6, middle: 0.6972),
+                                  Pin(size: 22.9, middle: 0.746),
+                                  child: SvgPicture.string(
+                                    _svg_id5aro,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 11.2, middle: 0.6412),
+                                  Pin(size: 21.5, middle: 0.7476),
+                                  child: BlendMask(
+                                    blendMode: BlendMode.colorDodge,
+                                    child: SvgPicture.string(
+                                      _svg_wy2asd,
+                                      allowDrawingOutsideViewBox: true,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 22.7, middle: 0.7044),
+                                  Pin(size: 29.3, middle: 0.7386),
+                                  child: SvgPicture.string(
+                                    _svg_guksz4,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 9.3, middle: 0.6616),
+                                  Pin(size: 4.7, middle: 0.7796),
+                                  child: SvgPicture.string(
+                                    _svg_pi60kk,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                Pinned.fromPins(
+                                  Pin(size: 9.3, middle: 0.6616),
+                                  Pin(size: 3.4, middle: 0.7808),
+                                  child: SvgPicture.string(
+                                    _svg_e4ochh,
+                                    allowDrawingOutsideViewBox: true,
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      ),
-                      Pinned.fromPins(
-                        Pin(size: 44.0, middle: 0.5),
-                        Pin(size: 19.0, middle: 0.5),
-                        child:
-                            // Adobe XD layer: 'Label' (text)
-                            Text(
-                          'Sign In',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 13,
-                            color: const Color(0xffffffff),
-                            fontWeight: FontWeight.w500,
+                        Pinned.fromPins(
+                          Pin(start: 65.8, end: 65.8),
+                          Pin(size: 50.1, middle: 0.4348),
+                          child:
+                              // Adobe XD layer: 'Area ' (shape)
+                              TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) {
+                              return _emailController.text.isEmpty
+                                  ? 'Form kosong, silahkan masukkan email'
+                                  : null;
+                            },
+                            controller: _emailController,
+                            onChanged: (value) => email = value,
+                            cursorColor: Colors.green,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                              //labelText: S.of(parentContext).username,
+                              labelText: 'E-mail',
+                              labelStyle: const TextStyle(color: Colors.green),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    const BorderSide(color: Colors.green),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    const BorderSide(color: Colors.green),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(color: Colors.red),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(color: Colors.red),
+                              ),
+                              prefixIcon: const Icon(Icons.perm_identity,
+                                  color: Colors.green),
+                            ),
                           ),
-                          textAlign: TextAlign.center,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 28.0, middle: 0.1793),
-                  Pin(size: 19.0, middle: 0.4096),
-                  child:
-                      // Adobe XD layer: 'npm' (text)
-                      Text(
-                    'NPM',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 13,
-                      color: const Color(0x993d3d3d),
-                      height: 1.8461538461538463,
-                    ),
-                    textHeightBehavior:
-                        TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 63.0, middle: 0.1994),
-                  Pin(size: 19.0, middle: 0.483),
-                  child:
-                      // Adobe XD layer: 'pw' (text)
-                      Text(
-                    'Password',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 13,
-                      color: const Color(0x993d3d3d),
-                      height: 1.8461538461538463,
-                    ),
-                    textHeightBehavior:
-                        TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(start: 65.8, end: 65.8),
-                  Pin(size: 30.1, middle: 0.5216),
-                  child:
-                      // Adobe XD layer: 'Area ' (shape)
-                      Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(34.0),
-                      color: const Color(0xffffffff),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0x29000000),
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
+                        Pinned.fromPins(
+                          // Pin(size: 300.0, middle: 0.5519),
+                          Pin(start: 90.8, end: 90.8),
+                          Pin(size: 19.0, middle: 0.6737),
+                          child:
+                              // Adobe XD layer: 'sandi' (text)
+                              SizedBox(
+                            child: Row(
+                              children: [
+                                const Expanded(
+                                  child: Text(
+                                    "Don't have an account ? ",
+                                    style: TextStyle(color: Colors.green),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const RegisterPage()));
+                                  },
+                                  child: const Text(
+                                    'Sign Up',
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 14,
+                                      color: Color(0xff3d3d3d),
+                                      height: 1.8461538461538463,
+                                    ),
+                                    textHeightBehavior: TextHeightBehavior(
+                                        applyHeightToFirstAscent: false),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Pinned.fromPins(
+                          Pin(size: 86.0, middle: 0.5017),
+                          Pin(size: 112.0, start: 113.0),
+                          child:
+                              // Adobe XD layer: 'Logo UNAS (Universi…' (shape)
+                              Container(
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/images/logo1.png'),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Pinned.fromPins(
+                          Pin(size: 121.0, middle: 0.5),
+                          Pin(size: 38.0, middle: 0.6072),
+                          child:
+                              // Adobe XD layer: 'login' (group)
+                              Stack(
+                            children: <Widget>[
+                              Pinned.fromPins(
+                                Pin(start: 0.0, end: 0.0),
+                                Pin(start: 0.0, end: 0.0),
+                                child: PageLink(
+                                  links: [
+                                    PageLinkInfo(
+                                      transition: LinkTransition.Fade,
+                                      ease: Curves.slowMiddle,
+                                      duration: 1.0,
+                                      pageBuilder: () => signIn,
+                                    ),
+                                  ],
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(19.0),
+                                      color: const Color(0xff12a346),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Color(0x29000000),
+                                          offset: Offset(0, 5),
+                                          blurRadius: 6,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Pinned.fromPins(
+                                Pin(size: 44.0, middle: 0.5),
+                                Pin(size: 19.0, middle: 0.5),
+                                child:
+                                    // Adobe XD layer: 'Label' (text)
+                                    const Text(
+                                  'Sign In',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 13,
+                                    color: Color(0xffffffff),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Pinned.fromPins(
+                        //   Pin(size: 28.0, middle: 0.1793),
+                        //   Pin(size: 19.0, middle: 0.4096),
+                        //   child:
+                        //       // Adobe XD layer: 'npm' (text)
+                        //       Text(
+                        //     'NPM',
+                        //     style: TextStyle(
+                        //       fontFamily: 'Poppins',
+                        //       fontSize: 13,
+                        //       color: const Color(0x993d3d3d),
+                        //       height: 1.8461538461538463,
+                        //     ),
+                        //     textHeightBehavior:
+                        //         TextHeightBehavior(applyHeightToFirstAscent: false),
+                        //     textAlign: TextAlign.left,
+                        //   ),
+                        // ),
+                        // Pinned.fromPins(
+                        //   Pin(size: 63.0, middle: 0.1994),
+                        //   Pin(size: 19.0, middle: 0.483),
+                        //   child:
+                        //       // Adobe XD layer: 'pw' (text)
+                        //       Text(
+                        //     'Password',
+                        //     style: TextStyle(
+                        //       fontFamily: 'Poppins',
+                        //       fontSize: 13,
+                        //       color: const Color(0x993d3d3d),
+                        //       height: 1.8461538461538463,
+                        //     ),
+                        //     textHeightBehavior:
+                        //         TextHeightBehavior(applyHeightToFirstAscent: false),
+                        //     textAlign: TextAlign.left,
+                        //   ),
+                        // ),
+                        Pinned.fromPins(
+                          Pin(start: 65.8, end: 65.8),
+                          Pin(size: 50.1, middle: 0.5216),
+                          child:
+                              // Adobe XD layer: 'Area ' (shape)
+                              TextFormField(
+                            onChanged: (value) => password = value,
+                            obscureText: _obsecureText,
+                            controller: _passwordController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) {
+                              return _passwordController.text.length < 4
+                                  ? 'Minimal 4 karakter password'
+                                  : null;
+                            },
+                            cursorColor: Colors.green,
+                            decoration: InputDecoration(
+                              //labelText: S.of(parentContext).username,
+                              labelText: 'Password',
+                              labelStyle: const TextStyle(color: Colors.green),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    const BorderSide(color: Colors.green),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    const BorderSide(color: Colors.green),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(color: Colors.red),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(color: Colors.red),
+                              ),
+                              prefixIcon:
+                                  const Icon(Icons.lock, color: Colors.green),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  toggle();
+                                },
+                                icon: Icon(
+                                  Icons.remove_red_eye_outlined,
+                                  color: !_obsecureText
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                                ),
+                                iconSize: 24,
+                                padding: const EdgeInsets.only(right: 10),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Pinned.fromPins(
+                          Pin(size: 210.0, middle: 0.5),
+                          Pin(size: 35.0, middle: 0.3065),
+                          child:
+                              // Adobe XD layer: 'login' (text)
+                              const Text(
+                            'Smart Campus',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 25,
+                              color: Color(0xff12a346),
+                              letterSpacing: 1.25,
+                              fontWeight: FontWeight.w700,
+                              height: 1.28,
+                            ),
+                            textHeightBehavior: TextHeightBehavior(
+                                applyHeightToFirstAscent: false),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 210.0, middle: 0.5),
-                  Pin(size: 35.0, middle: 0.3065),
-                  child:
-                      // Adobe XD layer: 'login' (text)
-                      Text(
-                    'Smart Campus',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 25,
-                      color: const Color(0xff12a346),
-                      letterSpacing: 1.25,
-                      fontWeight: FontWeight.w700,
-                      height: 1.28,
-                    ),
-                    textHeightBehavior:
-                        TextHeightBehavior(applyHeightToFirstAscent: false),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
+                  // Positioned(
+                  //   top: 300,
+                  //   left: 50,
+                  //   right: 50,
+                  //   child: SizedBox(
+                  //     height: 200,
+                  //     width: MediaQuery.of(context).size.width,
+                  //     child: Column(
+                  //       children: [
+                  //         Text('NPM'),
+                  //         TextFormField(),
+                  //         Text('Password'),
+                  //         TextFormField(),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                ],
+              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
