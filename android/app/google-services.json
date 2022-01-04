@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "652109669833",
+    "project_id": "semoga-aef6f",
+    "storage_bucket": "semoga-aef6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652109669833:android:a6d19e89eed00d4aeeb418",
+        "android_client_info": {
+          "package_name": "com.example.semoga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652109669833-4oo057966v6s8ks64pt5tlk6abqmo737.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNrKEkYYu7ZCCEgpol1QDw6l9IvMQAhu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652109669833-4oo057966v6s8ks64pt5tlk6abqmo737.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
