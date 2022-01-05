@@ -613,7 +613,7 @@ class akademik2 extends StatelessWidget {
                         transition: LinkTransition.Fade,
                         ease: Curves.slowMiddle,
                         duration: 1.0,
-                        pageBuilder: () => akademik(),
+                        pageBuilder: () => DashboardPage(),
                       ),
                     ],
                     child: Stack(
@@ -675,7 +675,7 @@ class akademik2 extends StatelessWidget {
                         transition: LinkTransition.Fade,
                         ease: Curves.slowMiddle,
                         duration: 1.0,
-                        pageBuilder: () => akademik(),
+                        pageBuilder: () => DashboardPage(),
                       ),
                     ],
                     child: Container(

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './akademik2.dart';
@@ -5,10 +7,38 @@ import 'package:adobe_xd/page_link.dart';
 import './home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class akademik extends StatelessWidget {
-  akademik({
+class DashboardPage extends StatefulWidget {
+  const DashboardPage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  String userId = '', nama = '', email = '', npm = '';
+  Future getData() async {
+    userId = FirebaseAuth.instance.currentUser!.uid;
+
+    return FirebaseFirestore.instance
+        .collection('Users')
+        .doc(userId)
+        .get()
+        .then((DocumentSnapshot snap) {
+      nama = snap['namaLengkap'];
+      email = snap['email'];
+      npm = snap['email'];
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -2933,12 +2963,12 @@ class akademik extends StatelessWidget {
                       Pinned.fromPins(
                         Pin(size: 85.0, start: 0.0),
                         Pin(size: 28.0, start: 0.0),
-                        child: Text.rich(
+                        child: const Text.rich(
                           TextSpan(
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 20,
-                              color: const Color(0xff59cf83),
+                              color: Color(0xff59cf83),
                             ),
                             children: [
                               TextSpan(
@@ -2950,7 +2980,7 @@ class akademik extends StatelessWidget {
                               TextSpan(
                                 text: ' Aziz',
                                 style: TextStyle(
-                                  color: const Color(0xff12a346),
+                                  color: Color(0xff12a346),
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),

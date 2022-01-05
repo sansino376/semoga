@@ -708,7 +708,7 @@ class nilai extends StatelessWidget {
                         transition: LinkTransition.Fade,
                         ease: Curves.slowMiddle,
                         duration: 1.0,
-                        pageBuilder: () => akademik(),
+                        pageBuilder: () => DashboardPage(),
                       ),
                     ],
                     child: Container(
