@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:semoga/firebase.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -21,6 +22,10 @@ class _RegisterPageState extends State<RegisterPage> {
         email: _emailController.text,
         password: _passwordController.text,
       );
+      User updateUser = FirebaseAuth.instance.currentUser!;
+      updateUser.updateDisplayName(_namaController.text);
+      userSetup(
+          _namaController.text, _npmController.text, _emailController.text);
       _snackBar(context, 'Register Berhasil');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
