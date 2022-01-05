@@ -2964,28 +2964,33 @@ class _DashboardPageState extends State<DashboardPage> {
                         Pin(size: 85.0, start: 0.0),
                         Pin(size: 28.0, start: 0.0),
                         child: const Text.rich(
-                          TextSpan(
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                              color: Color(0xff59cf83),
-                            ),
-                            children: [
-                              TextSpan(
-                                text: 'Hai,',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              TextSpan(
-                                text: ' Aziz',
-                                style: TextStyle(
-                                  color: Color(0xff12a346),
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
-                          ),
+                          "Hai, ${users.displayName}",
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+
+                          // TextSpan(
+                          //   style: TextStyle(
+                          //     fontFamily: 'Poppins',
+                          //     fontSize: 20,
+                          //     color: Color(0xff59cf83),
+                          // ),
+
+                          // children: [
+                          //   TextSpan(
+                          //     text: 'Hai,',
+                          //     style: TextStyle(
+                          //       fontWeight: FontWeight.w700,
+                          //     ),
+                          //   ),
+                          //   TextSpan(
+                          //     text: ' Aziz',
+                          //     style: TextStyle(
+                          //       color: Color(0xff12a346),
+                          //       fontWeight: FontWeight.w700,
+                          //     ),
+                          //   ),
+                          // ],
+                          // ),
                           textHeightBehavior: TextHeightBehavior(
                               applyHeightToFirstAscent: false),
                           textAlign: TextAlign.left,

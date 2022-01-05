@@ -301,8 +301,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Pinned.fromPins(
                           // Pin(size: 300.0, middle: 0.5519),
-                          Pin(start: 90.8, end: 90.8),
-                          Pin(size: 19.0, middle: 0.6737),
+                          Pin(start: 70.8, end: 70.8),
+                          Pin(size: 30.0, middle: 0.6737),
                           child:
                               // Adobe XD layer: 'sandi' (text)
                               SizedBox(
