@@ -52,8 +52,8 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(15),
-              height: MediaQuery.of(context).size.height * 0.6,
+              padding: const EdgeInsets.all(40),
+              height: MediaQuery.of(context).size.height * 0.5,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -82,6 +82,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 50,
                     child: ElevatedButton(
                       style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.green),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -136,11 +138,11 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.red),
+          borderSide: const BorderSide(color: Colors.green),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.red),
+          borderSide: const BorderSide(color: Colors.green),
         ),
         prefixIcon: Icon(icon, color: Colors.green),
       ),
