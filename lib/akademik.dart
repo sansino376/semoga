@@ -35,6 +35,14 @@ class _DashboardPageState extends State<DashboardPage> {
     });
   }
 
+  List gambar = [
+    "assets/images/unas1.png",
+    "assets/images/unas2.jpeg",
+    "assets/images/unas3.png",
+    "assets/images/unas4.jpg",
+    "assets/images/unas5.jpeg"
+  ];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -3027,25 +3035,24 @@ class _DashboardPageState extends State<DashboardPage> {
                         //height: 200.0,
                         initialPage: 0,
                         enableInfiniteScroll: true,
-                        viewportFraction: 0.8, autoPlay: true,
+                        autoPlay: true,
                         autoPlayInterval: Duration(seconds: 3),
                       ),
-                      items: [1, 2, 3, 4, 5].map((i) {
+                      items: gambar.map((i) {
                         return Builder(
                           builder: (BuildContext context) {
                             return Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade400,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'text $i',
-                                    style: TextStyle(fontSize: 16.0),
-                                  ),
-                                ));
+                              width: MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade400,
+                                //borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Image.asset(
+                                i,
+                                fit: BoxFit.cover,
+                              ),
+                            );
                           },
                         );
                       }).toList(),
