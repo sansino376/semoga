@@ -29,7 +29,7 @@ class _Akademik2State extends State<Akademik2> {
       setState(() {
         nama = snap['namaLengkap'];
         email = snap['email'];
-        npm = snap['email'];
+        npm = snap['npm'];
       });
     });
   }
@@ -73,7 +73,7 @@ class _Akademik2State extends State<Akademik2> {
                     ),
                   ),
                 ),
-                 Pinned.fromPins(
+                Pinned.fromPins(
                   Pin(start: 20.0, end: 31.0),
                   Pin(size: 69.3, start: 103.0),
                   child:
@@ -99,6 +99,12 @@ class _Akademik2State extends State<Akademik2> {
                               color: Color(0xff59cf83),
                             ),
                             children: [
+                              const TextSpan(
+                                text: 'Hai, ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
                               TextSpan(
                                 text: nama,
                                 style: const TextStyle(
@@ -113,7 +119,35 @@ class _Akademik2State extends State<Akademik2> {
                           textAlign: TextAlign.left,
                         ),
                       ),
+                      Pinned.fromPins(
+                        Pin(size: 224.0, start: 0.0),
+                        Pin(size: 21.0, middle: 0.6833),
+                        child: Text(
+                          npm,
+                          style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 17,
+                            color: Color(0xff59cf83),
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
 
+                      // Pinned.fromPins(
+                      //   Pin(size: 16.5, end: 0.0),
+                      //   Pin(size: 16.3, end: 0.0),
+                      //   child:
+                      //       // Adobe XD layer: 'bel' (shape)
+                      //       SvgPicture.string(
+                      //     _svg_ml6b7,
+                      //     allowDrawingOutsideViewBox: true,
+                      //     fit: BoxFit.fill,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                ),
                 // Pinned.fromPins(
                 //   Pin(size: 258.0, start: 24.0),
                 //   Pin(size: 28.0, start: 121.0),

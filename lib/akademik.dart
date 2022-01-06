@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -3001,32 +3002,54 @@ class _DashboardPageState extends State<DashboardPage> {
                           textAlign: TextAlign.left,
                         ),
                       ),
-                      Pinned.fromPins(
-                        Pin(size: 224.0, start: 0.0),
-                        Pin(size: 21.0, middle: 0.6833),
-                        child: Text(
-                          'Apa yang Sedang Kamu Cari?',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 15,
-                            color: const Color(0xff707070),
-                            fontWeight: FontWeight.w300,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                      Pinned.fromPins(
-                        Pin(size: 16.5, end: 0.0),
-                        Pin(size: 16.3, end: 0.0),
-                        child:
-                            // Adobe XD layer: 'bel' (shape)
-                            SvgPicture.string(
-                          _svg_ml6b7,
-                          allowDrawingOutsideViewBox: true,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+
+                      // Pinned.fromPins(
+                      //   Pin(size: 16.5, end: 0.0),
+                      //   Pin(size: 16.3, end: 0.0),
+                      //   child:
+                      //       // Adobe XD layer: 'bel' (shape)
+                      //       SvgPicture.string(
+                      //     _svg_ml6b7,
+                      //     allowDrawingOutsideViewBox: true,
+                      //     fit: BoxFit.fill,
+                      //   ),
+                      // ),
                     ],
+                  ),
+                ),
+                Positioned(
+                  top: 140,
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * .12,
+                    width: MediaQuery.of(context).size.width,
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        //height: 200.0,
+                        initialPage: 0,
+                        enableInfiniteScroll: true,
+                        viewportFraction: 0.8, autoPlay: true,
+                        autoPlayInterval: Duration(seconds: 3),
+                      ),
+                      items: [1, 2, 3, 4, 5].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade400,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'text $i',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                ));
+                          },
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
                 Pinned.fromPins(
