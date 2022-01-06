@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './nilai.dart';
@@ -9,6 +11,36 @@ class akademik2 extends StatelessWidget {
   akademik2({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<akademik2> createState() => _akademik2State();
+}
+
+class _akademik2State extends State<akademik2> {
+  String userId = '', nama = '', email = '', npm = '';
+  Future getData() async {
+    userId = FirebaseAuth.instance.currentUser!.uid;
+    print(userId);
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(userId)
+        .get()
+        .then((DocumentSnapshot snap) {
+      setState(() {
+        nama = snap['namaLengkap'];
+        email = snap['email'];
+        npm = snap['npm'];
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,22 +73,22 @@ class akademik2 extends StatelessWidget {
                     ),
                   ),
                 ),
-                Pinned.fromPins(
-                  Pin(size: 258.0, start: 24.0),
-                  Pin(size: 28.0, start: 121.0),
-                  child:
-                      // Adobe XD layer: 'Muhammad Aziz' (text)
-                      Text(
-                    'Muhammad Aziz Al Amin',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 20,
-                      color: const Color(0xff12a346),
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
+                // Pinned.fromPins(
+                //   Pin(size: 258.0, start: 24.0),
+                //   Pin(size: 28.0, start: 121.0),
+                //   child:
+                //       // Adobe XD layer: 'Muhammad Aziz' (text)
+                //       Text(
+                //     'Muhammad Aziz Al Amin',
+                //     style: TextStyle(
+                //       fontFamily: 'Poppins',
+                //       fontSize: 20,
+                //       color: const Color(0xff12a346),
+                //       fontWeight: FontWeight.w700,
+                //     ),
+                //     textAlign: TextAlign.left,
+                //   ),
+                // ),
                 Pinned.fromPins(
                   Pin(size: 62.0, start: 24.0),
                   Pin(size: 20.0, middle: 0.4707),
@@ -577,21 +609,21 @@ class akademik2 extends StatelessWidget {
                     ],
                   ),
                 ),
-                Pinned.fromPins(
-                  Pin(size: 153.0, start: 24.0),
-                  Pin(size: 21.0, middle: 0.1884),
-                  child: Text(
-                    '183112706450117',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 15,
-                      color: const Color(0xff707070),
-                      letterSpacing: 3,
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
+                // Pinned.fromPins(
+                //   Pin(size: 153.0, start: 24.0),
+                //   Pin(size: 21.0, middle: 0.1884),
+                //   child: Text(
+                //     '183112706450117',
+                //     style: TextStyle(
+                //       fontFamily: 'Poppins',
+                //       fontSize: 15,
+                //       color: const Color(0xff707070),
+                //       letterSpacing: 3,
+                //       fontWeight: FontWeight.w300,
+                //     ),
+                //     textAlign: TextAlign.left,
+                //   ),
+                // ),
               ],
             ),
           ),
