@@ -73,6 +73,47 @@ class _Akademik2State extends State<Akademik2> {
                     ),
                   ),
                 ),
+                 Pinned.fromPins(
+                  Pin(start: 20.0, end: 31.0),
+                  Pin(size: 69.3, start: 103.0),
+                  child:
+                      // Adobe XD layer: 'head 2' (group)
+                      Stack(
+                    children: <Widget>[
+                      Pinned.fromPins(
+                        Pin(size: 200.0, start: 0.0),
+                        Pin(size: 28.0, start: 0.0),
+                        child:
+                            // Text('Hai, $nama',
+                            //     style: const TextStyle(
+                            //       fontWeight: FontWeight.w700,
+                            //       fontSize: 20,
+                            //       fontFamily: 'Poppins',
+                            //       color: Color(0xff12a346),
+                            //     )),
+                            Text.rich(
+                          TextSpan(
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 20,
+                              color: Color(0xff59cf83),
+                            ),
+                            children: [
+                              TextSpan(
+                                text: nama,
+                                style: const TextStyle(
+                                  color: Color(0xff12a346),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                          textHeightBehavior: TextHeightBehavior(
+                              applyHeightToFirstAscent: false),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+
                 // Pinned.fromPins(
                 //   Pin(size: 258.0, start: 24.0),
                 //   Pin(size: 28.0, start: 121.0),
