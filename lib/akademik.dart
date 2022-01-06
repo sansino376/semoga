@@ -3013,8 +3013,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           Stack(
                         children: <Widget>[
                           Pinned.fromPins(
-                            Pin(size: 400.0, start: 800.0),
-                            Pin(size: 40.0, start: 0.0),
+                            Pin(size: 300.0, start: 0.0),
+                            Pin(size: 28.0, start: -18.0),
                             child:
                                 // Text('Hai, $nama',
                                 //     style: const TextStyle(
@@ -3067,9 +3067,9 @@ class _DashboardPageState extends State<DashboardPage> {
                       ),
                     ),
                     Positioned(
-                      top: 140,
+                      top: 115,
                       child: SizedBox(
-                        height: MediaQuery.of(context).size.height * .12,
+                        height: MediaQuery.of(context).size.height * .16,
                         width: MediaQuery.of(context).size.width,
                         child: CarouselSlider(
                           options: CarouselOptions(
@@ -3084,14 +3084,17 @@ class _DashboardPageState extends State<DashboardPage> {
                               builder: (BuildContext context) {
                                 return Container(
                                   width: MediaQuery.of(context).size.width,
-                                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 2.0,
+                                    vertical: 1.0,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.grey.shade400,
                                     //borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Image.asset(
                                     i,
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.fill,
                                   ),
                                 );
                               },
