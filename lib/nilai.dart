@@ -570,7 +570,7 @@ class nilai extends StatelessWidget {
               links: [
                 PageLinkInfo(
                   transition: LinkTransition.Fade,
-                  ease: Curves.linear,
+                  ease: Curves.slowMiddle,
                   duration: 0.8,
                   pageBuilder: () => full(),
                 ),
@@ -644,7 +644,7 @@ class nilai extends StatelessWidget {
                     links: [
                       PageLinkInfo(
                         transition: LinkTransition.Fade,
-                        ease: Curves.slowMiddle,
+                        ease: Curves.fastLinearToSlowEaseIn,
                         duration: 1.0,
                         pageBuilder: () => Akademik2(),
                       ),

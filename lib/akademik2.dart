@@ -99,12 +99,12 @@ class _Akademik2State extends State<Akademik2> {
                               color: Color(0xff59cf83),
                             ),
                             children: [
-                              const TextSpan(
-                                text: 'Hai, ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
+                              // const TextSpan(
+                              //   text: 'Hai, ',
+                              //   style: TextStyle(
+                              //     fontWeight: FontWeight.w700,
+                              //   ),
+                              // ),
                               TextSpan(
                                 text: nama,
                                 style: const TextStyle(
@@ -504,7 +504,7 @@ class _Akademik2State extends State<Akademik2> {
                 ),
                 Pinned.fromPins(
                   Pin(start: 24.0, end: 24.0),
-                  Pin(size: 147.0, middle: 0.2917),
+                  Pin(size: 147.0, middle: 0.2817),
                   child:
                       // Adobe XD layer: 'info' (group)
                       Stack(
