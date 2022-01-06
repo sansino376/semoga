@@ -7,16 +7,16 @@ import 'package:adobe_xd/page_link.dart';
 import './akademik.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class akademik2 extends StatelessWidget {
-  akademik2({
+class Akademik2 extends StatefulWidget {
+  Akademik2({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<akademik2> createState() => _akademik2State();
+  State<Akademik2> createState() => _Akademik2State();
 }
 
-class _akademik2State extends State<akademik2> {
+class _Akademik2State extends State<Akademik2> {
   String userId = '', nama = '', email = '', npm = '';
   Future getData() async {
     userId = FirebaseAuth.instance.currentUser!.uid;
@@ -29,7 +29,7 @@ class _akademik2State extends State<akademik2> {
       setState(() {
         nama = snap['namaLengkap'];
         email = snap['email'];
-        npm = snap['npm'];
+        npm = snap['email'];
       });
     });
   }

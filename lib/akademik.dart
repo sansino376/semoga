@@ -513,7 +513,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                     transition: LinkTransition.PushLeft,
                                     ease: Curves.easeOut,
                                     duration: 0.6,
-                                    pageBuilder: () => akademik2(),
+                                    pageBuilder: () => Akademik2(),
                                   ),
                                 ],
                                 child: SvgPicture.string(
