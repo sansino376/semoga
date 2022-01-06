@@ -83,7 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
                 Pinned.fromPins(
                   Pin(size: 334.0, start: 20.0),
-                  Pin(size: 560.6, end: 45.4),
+                  Pin(size: 560.6, end: -10.4),
                   child:
                       // Adobe XD layer: 'menu' (group)
                       Stack(
