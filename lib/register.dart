@@ -111,6 +111,14 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  bool _obsecureText = true;
+
+  void toggle() {
+    setState(() {
+      _obsecureText = !_obsecureText;
+    });
+  }
+
   Widget formField(
     String title,
     TextEditingController controller,
@@ -125,12 +133,27 @@ class _RegisterPageState extends State<RegisterPage> {
             ? 'Form kosong, silahkan masukkan email'
             : null;
       },
+      obscureText: title == 'Password' ? _obsecureText : false,
       controller: controller,
       onChanged: (value) => value = value,
       cursorColor: Colors.green,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        //labelText: S.of(parentContext).username,
+        suffixIcon: title == 'Password'
+            ? IconButton(
+                onPressed: () {
+                  toggle();
+                },
+                icon: Icon(
+                  Icons.remove_red_eye_outlined,
+                  color: !_obsecureText
+                      ? Theme.of(context).primaryColor
+                      : Colors.grey,
+                ),
+                iconSize: 24,
+                padding: const EdgeInsets.only(right: 10),
+              )
+            : null,
         labelText: title,
         labelStyle: const TextStyle(color: Colors.green),
         focusedBorder: OutlineInputBorder(
