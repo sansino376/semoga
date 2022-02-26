@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
-import './full.dart';
 import 'package:adobe_xd/page_link.dart';
-import './akademik2.dart';
-import './akademik.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class nilai extends StatelessWidget {
@@ -572,7 +569,7 @@ class nilai extends StatelessWidget {
                   transition: LinkTransition.Fade,
                   ease: Curves.slowMiddle,
                   duration: 0.8,
-                  pageBuilder: () => full(),
+                  pageBuilder: () => nilai(),
                 ),
               ],
               child: Stack(
@@ -646,7 +643,7 @@ class nilai extends StatelessWidget {
                         transition: LinkTransition.Fade,
                         ease: Curves.fastLinearToSlowEaseIn,
                         duration: 1.0,
-                        pageBuilder: () => Akademik2(),
+                        pageBuilder: () => nilai(),
                       ),
                     ],
                     child: Stack(
@@ -708,7 +705,7 @@ class nilai extends StatelessWidget {
                         transition: LinkTransition.Fade,
                         ease: Curves.slowMiddle,
                         duration: 1.0,
-                        pageBuilder: () => DashboardPage(),
+                        pageBuilder: () => nilai(),
                       ),
                     ],
                     child: Container(

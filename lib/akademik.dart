@@ -9,7 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class akademik extends StatelessWidget {
   akademik({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,7 @@ class akademik extends StatelessWidget {
                             fit: BoxFit.fill,
                           ),
                         ),
-                        margin:
-                            EdgeInsets.fromLTRB(-184.0, -66.0, -145.0, -47.0),
+                        margin: EdgeInsets.fromLTRB(184.0, 66.0, 145.0, 47.0),
                       ),
                       Container(
                         color: const Color(0xffffffff),

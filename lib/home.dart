@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const akademik(),
+          builder: (context) => akademik(),
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -513,7 +513,7 @@ class _LoginPageState extends State<LoginPage> {
                           child:
                               // Adobe XD layer: 'login' (text)
                               const Text(
-                            'Smart Campus',
+                            'Akademik Online',
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontSize: 25,

@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class pilihankrs extends StatelessWidget {
   pilihankrs({
-    Key key,
+    Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
