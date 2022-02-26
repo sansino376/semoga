@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const DashboardPage(),
+          builder: (context) => const akademik(),
         ),
       );
     } on FirebaseAuthException catch (e) {
